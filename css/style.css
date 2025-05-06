@@ -1,0 +1,202 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars */
+    font-family: Arial, sans-serif;
+    background-color: #222; /* Dark background */
+    color: white;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
+
+#timer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 100; /* Ensure timer is above the canvas */
+}
+
+#theme-selector {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+#theme-selector span {
+    margin-right: 5px;
+}
+
+#theme-selector button {
+    margin-left: 5px;
+    padding: 3px 8px;
+    cursor: pointer;
+}
+
+
+
+#story-display {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    max-width: 300px; /* Limit width */
+    max-height: 150px; /* Limit height */
+    overflow-y: auto; /* Add scroll if content exceeds height */
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 100;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+
+#key-display {
+    position: absolute;
+    top: 40px; /* Position below timer */
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+
+
+
+/* Mobile Touch Controls */
+#touch-controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%; /* Adjust height as needed */
+    display: none; /* Hidden by default, shown via JS on mobile */
+    pointer-events: none; /* Allow clicks/taps to pass through the container */
+    touch-action: none; /* Prevent default touch actions like scrolling */
+    z-index: 10; /* Ensure controls are above the canvas */
+}
+
+#joystick-area {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 120px;
+    height: 120px;
+    background-color: rgba(128, 128, 128, 0.3);
+    border-radius: 50%;
+    pointer-events: auto; /* Enable touch events for this area */
+}
+
+#joystick-thumb {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(200, 200, 200, 0.6);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* Thumb itself doesn't need events */
+}
+
+#look-area {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50%; /* Right half of the controls area */
+    height: 100%;
+    /* background-color: rgba(0, 0, 255, 0.1); */ /* Optional: for debugging */
+    pointer-events: auto; /* Enable touch events for this area */
+}
+
+/* Media query to show controls only on touch devices (approximation) */
+@media (hover: none) and (pointer: coarse) {
+    #touch-controls {
+        display: block;
+    }
+
+    /* Adjust UI for mobile */
+    #timer, #key-display {
+        font-size: 14px; /* Slightly smaller font */
+    }
+
+    #theme-selector {
+        top: auto; /* Remove fixed top */
+        bottom: 10px; /* Place near bottom */
+        right: 10px;
+        left: auto; /* Remove fixed left */
+        width: auto; /* Adjust width */
+        display: flex;
+        flex-direction: column; /* Stack buttons vertically */
+    }
+    #theme-selector button {
+        margin: 3px 0; /* Adjust margin for vertical stack */
+        padding: 8px 10px; /* Larger buttons for touch */
+    }
+
+    #story-display {
+        bottom: auto; /* Remove fixed bottom */
+        top: 40px; /* Place below timer/keys */
+        left: auto; /* Remove fixed left */
+        right: 10px;
+        max-width: 40%; /* Adjust width relative to screen */
+        max-height: 100px; /* Adjust height */
+        font-size: 12px; /* Smaller font */
+    }
+
+    /* Optional: Hide desktop-specific elements if needed */
+    /* #some-desktop-element { display: none; } */
+}
+
+
+
+
+/* Control Mode Selector */
+#control-mode-selector {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+    pointer-events: auto; /* Explicitly enable pointer events */
+    color: white;
+    text-align: center;
+}
+
+#control-mode-selector h2 {
+    margin-bottom: 30px;
+}
+
+#control-mode-selector button {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+#control-mode-selector button:hover {
+    background-color: #666;
+}
+

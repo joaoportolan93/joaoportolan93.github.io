@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labirinto 3D</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Control Mode Selector (Should be displayed first) -->
+    <div id="control-mode-selector">
+        <h2>Escolha o Modo de Controle</h2>
+        <button id="control-desktop">Teclado + Mouse (Desktop)</button>
+        <button id="control-mobile">Toque (Celular)</button>
+    </div>
+
+    <!-- Game UI Elements (Initially hidden or behind selector) -->
+    <div id="timer">Tempo: 0s</div>
+    <div id="key-display">Chaves: 0 / 1</div>
+    <div id="story-display">História Coletada:</div>
+    <div id="theme-selector">
+        <span>Tema:</span>
+        <button id="theme-brick">Tijolo</button>
+        <button id="theme-garden">Jardim</button>
+        <button id="theme-metal">Espaçonave</button>
+    </div>
+
+    <!-- Game Container -->
+    <div id="container"></div>
+
+    <!-- Mobile Touch Controls (Initially hidden) -->
+    <div id="touch-controls">
+        <div id="joystick-area">
+            <div id="joystick-thumb"></div>
+        </div>
+        <div id="look-area"></div>
+    </div>
+
+    <!-- Import Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- Touch controls script is now conditionally loaded/used via main.js -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
+
